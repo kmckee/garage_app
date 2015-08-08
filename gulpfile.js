@@ -28,6 +28,7 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
 });
@@ -66,3 +67,13 @@ gulp.task('git-check', function(done) {
   }
   done();
 });
+
+gulp.task('html', function() {
+    var htmlReplace = require('gulp-html-replace');
+    gulp.src('./www/index.html')
+        .pipe(htmlReplace({
+            firstPartyJs: ['./www/js/app.js', './www/js/controllers.js', './www/js/servicesModule.js', './www/js/doorStatus.js', './www/js/doorOpener.js']
+        }))
+        .pipe(gulp.dest('./dist'));
+});
+

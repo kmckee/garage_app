@@ -7,6 +7,9 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'])
 
+.constant('ACCESS_TOKEN', 'bb03e9ee7273f448e94282b06ebd72ff533ca1c2')
+.constant('DEVICE_ID', '55ff6c065075555317501687')
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
