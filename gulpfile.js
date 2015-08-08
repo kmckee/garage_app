@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var browserSync = require('browser-sync').create();
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -37,6 +38,21 @@ gulp.task('install', ['git-check'], function() {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
 });
+
+
+gulp.task('serve:bs', function() {
+    var baseDir = "./www"
+    browserSync.init({
+        server: {
+            baseDir: baseDir
+        },
+        reloadDelay: 2000
+    });
+
+    gulp.watch([baseDir + '/**/*.js', baseDir + '/**/*.less', baseDir + 'www/**/*.html'], browserSync.reload);
+});
+
+
 
 gulp.task('git-check', function(done) {
   if (!sh.which('git')) {
