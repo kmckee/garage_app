@@ -1,9 +1,12 @@
 <ion-view view-title="Dashboard">
-  <ion-content class="padding">
-    <button class="button button-block button-positive"
-        ng-click="openOrCloseDoor()"
-        ng-enabled="allowedToOpenOrClose">
-        Open Garage Door
-    </button>
-  </ion-content>
+    <ion-content class="padding">
+        <p>
+            The door is currently: {{ doorStatus }}
+        </p>
+        <button class="button button-block button-positive"
+                ng-click="openOrCloseDoor()"
+                ng-enabled="allowedToOpenOrClose">
+            Open Garage Door
+        </button>
+    </ion-content>
 </ion-view>

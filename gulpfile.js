@@ -41,7 +41,7 @@ gulp.task('install', ['git-check'], function() {
 
 
 gulp.task('serve:bs', function() {
-    var baseDir = "./www"
+    var baseDir = "./www";
     browserSync.init({
         server: {
             baseDir: baseDir
@@ -49,7 +49,7 @@ gulp.task('serve:bs', function() {
         reloadDelay: 2000
     });
 
-    gulp.watch([baseDir + '/**/*.js', baseDir + '/**/*.less', baseDir + 'www/**/*.html'], browserSync.reload);
+    gulp.watch([baseDir + '/**/*.js', baseDir + '/**/*.less', baseDir + '/**/*.html'], browserSync.reload);
 });
 
 
