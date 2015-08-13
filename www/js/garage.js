@@ -13,6 +13,7 @@ angular.module('starter')
                     var elem = element[0],
                     width = $window.innerWidth;
 
+                    var door = drawIconAndReturnDoor(elem, width);
 
                     $scope.$watch('doorStatus', function(newValue, oldValue) {
                         if (newValue == 'CLOSED') {
@@ -22,17 +23,18 @@ angular.module('starter')
                         }
                     });
 
+
                     var animateToClosed = function () {
+
                     };
 
                     var animateToOpen = function () {
                     };
 
-                    drawIconAndReturnDoor(elem);
 
 
-                    function drawIconAndReturnDoor(el) {
-                        var rsr = Raphael(el, '810.527', '862.878');
+                    function drawIconAndReturnDoor(el, width) {
+                        var rsr = Raphael(el, '811', '863');
 
                         var group_a = rsr.set();
                         var ellipse_h = rsr.ellipse(405.264, 828.441, 405.264, 27.105).attr({fill: '','fill-opacity': '',parent: 'group_a','stroke-width': '0','stroke-opacity': '1'}).data('id', 'ellipse_h');
@@ -99,7 +101,8 @@ angular.module('starter')
                                 path_w 
                                 );
 
-
+                        rsr.setViewBox(0,0,811,863,true);
+                        rsr.setSize('100%', '100%');
                         return group_f;
                     }
                 }
