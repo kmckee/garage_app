@@ -13,25 +13,30 @@ angular.module('starter')
                     var elem = element[0],
                     width = $window.innerWidth;
 
-                    var door = drawIconAndReturnDoor(elem, width);
+                    var doorAndQuestion = drawIconAndReturnDoor(elem, width);
 
                     $scope.$watch('doorStatus', function(newValue, oldValue) {
+                        if (newValue === oldValue)
+                            return;
+                        
+                        var door = doorAndQuestion.door;
+                        var question = doorAndQuestion.question;
+
                         if (newValue == 'CLOSED') {
-                            animateToClosed();
+                            question.hide();
+                            door.show();
+                            door.animate({opacity:1, transform: ''}, 2500, 'linear');
+                        } else if (newValue == 'OPEN') {
+                            question.hide();
+                            door.show();
+                            if (oldValue != 'CLOSED') { door.hide(); }
+                            door.animate({opacity:0,transform: 's0'}, 2500, 'linear');
                         } else {
-                            animateToOpen();
+                            door.hide();
+                            question.show();
                         }
+
                     });
-
-
-                    var animateToClosed = function () {
-
-                    };
-
-                    var animateToOpen = function () {
-                    };
-
-
 
                     function drawIconAndReturnDoor(el, width) {
                         var rsr = Raphael(el, '811', '863');
@@ -101,9 +106,12 @@ angular.module('starter')
                                 path_w 
                                 );
 
+
+                        var question = rsr.text(400, 540, '?').attr({ fill: '#FF0000', "font-size": 356, "font-family": "Arial, Helvetica, sans-serif" });
                         rsr.setViewBox(0,0,811,863,true);
                         rsr.setSize('100%', '100%');
-                        return group_f;
+
+                        return {door: group_f, question: question};
                     }
                 }
             };
